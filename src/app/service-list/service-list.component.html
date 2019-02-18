@@ -1,0 +1,25 @@
+<ng-container>
+  <mat-toolbar class="example-header">
+    <mat-icon matSuffix class="logo">language</mat-icon>
+
+    <mat-form-field appearance="outline" class="inputService">
+      <mat-label>Service Folder URL</mat-label>
+      <input matInput placeholder="https://" [(ngModel)]="serviceUrl">
+      <mat-icon matSuffix>language</mat-icon>
+      <mat-hint>Service Name</mat-hint>
+    </mat-form-field>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" opened class="example-sidenav">
+      <mat-card *ngFor="let endpoint of endpoints" (click)="viewServiceDetails(endpoint)">
+        {{endpoint}} - {{serviceUrl}}
+      </mat-card>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <app-service-detail [serviceUrl]="currentService"></app-service-detail>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+</ng-container>
