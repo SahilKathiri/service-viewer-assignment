@@ -1,12 +1,30 @@
-.example-sidenav {
-    width: 250px;
+.header {
+    height: fit-content;
+    padding: 1em;
+}
+
+.sidenav {
+    width: 300px;
+
+    .serviceName {
+        margin: 0.5em 0;
+    }
 }
 
 .logo {
     flex: 1 1 auto;
+
+    img {
+        width: 5em;
+    }
 }
 
 .inputService {
     font-size: 12px;
     flex: 2 1 auto;
+}
+
+.content {
+    height: 100vh;
+    padding: 15px;
 }

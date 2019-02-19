@@ -1,6 +1,8 @@
 <ng-container>
-  <mat-toolbar class="example-header">
-    <mat-icon matSuffix class="logo">language</mat-icon>
+  <mat-toolbar class="header">
+    <div class="logo">
+      <img src="https://i.imgur.com/kEtrrAc.png" />
+    </div>
 
     <mat-form-field appearance="outline" class="inputService">
       <mat-label>Service Folder URL</mat-label>
@@ -10,15 +12,20 @@
     </mat-form-field>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-container">
-    <mat-sidenav mode="side" opened class="example-sidenav">
-      <mat-card *ngFor="let endpoint of endpoints" (click)="viewServiceDetails(endpoint)">
-        {{endpoint}} - {{serviceUrl}}
+  <mat-sidenav-container class="container">
+    <mat-sidenav mode="side" opened class="sidenav">
+      <mat-card *ngFor="let service of endpoints" (click)="viewServiceDetails(service)" class="serviceName">
+        {{service.name}}
+      </mat-card>
+      <mat-card *ngIf="endpoints?.length == 0">
+        No Image Servers found
       </mat-card>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-      <app-service-detail [serviceUrl]="currentService"></app-service-detail>
+    <mat-sidenav-content class="content">
+      <mat-card>
+        <app-service-detail [service]="currentService" [serviceUrl]="serviceUrl"></app-service-detail>
+      </mat-card>
     </mat-sidenav-content>
   </mat-sidenav-container>
 

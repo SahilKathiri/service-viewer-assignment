@@ -1,3 +1,9 @@
+export interface IFolder {
+    currentVersion: number;
+    folders: string[];
+    services: IService[];
+}
+
 export interface IService {
     name: string;
     type: string;
@@ -21,4 +27,12 @@ export interface IExtent {
 export interface ISpatialReference {
     wkid: number;
     latestWkid: number;
+}
+
+export interface IImage {
+    href: string;
+    width: number;
+    height: number;
+    extent: IExtent;
+    scale: number;
 }

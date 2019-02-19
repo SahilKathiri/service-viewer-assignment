@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { ServiceListComponent } from './service-list/service-list.component';
 import { ServiceDetailComponent } from './service-detail/service-detail.component';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
+import { BoundingBoxComponent } from './bounding-box/bounding-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ServiceListComponent,
     ServiceDetailComponent,
-    ImageViewerComponent
+    ImageViewerComponent,
+    BoundingBoxComponent
   ],
   imports: [
     BrowserModule,
