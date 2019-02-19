@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+/**
+ * Default root for application.
+ */
+
+ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

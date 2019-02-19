@@ -1,3 +1,6 @@
+/**
+ * This component handles display of the Extents
+ */
 import { Component, OnInit, Input } from '@angular/core';
 import { IExtent } from '../interfaces';
 

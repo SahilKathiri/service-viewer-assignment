@@ -1,3 +1,6 @@
+/**
+ * Contains all imports from the Angular Material Library
+ */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

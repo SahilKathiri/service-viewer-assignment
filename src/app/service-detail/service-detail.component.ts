@@ -1,7 +1,11 @@
+/**
+ * This component handles the display of ImageServer properties and viewing the images
+ */
+
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IService, IImageService, IExtent, IImage } from '../interfaces';
+import { IService, IImageService, IImage } from '../interfaces';
 
 @Component({
   selector: 'app-service-detail',
@@ -9,12 +13,24 @@ import { IService, IImageService, IExtent, IImage } from '../interfaces';
   styleUrls: ['./service-detail.component.scss']
 })
 export class ServiceDetailComponent implements OnInit {
-  private _service: IService;
-  private _serviceUrl: string;
 
+  /**
+   * Contains details of the ImageService.
+   * Currently only contains information about extents and the name
+   */
   serviceDetail: IImageService;
+
+  /**
+   * Contains the result of ExportImage
+   */
   image: IImage;
 
+  /**
+   * Gets and sets the current Service (that is currently being viewed)
+   *
+   * On change queries the data again.
+   */
+  private _service: IService;
   @Input() set service(value: IService) {
     const changed = this._service !== value;
     this._service = value;
@@ -29,6 +45,12 @@ export class ServiceDetailComponent implements OnInit {
     return this._service;
   }
 
+  /**
+   * Gets and sets the Service Folder URL
+   *
+   * On change queries the data again.
+   */
+  private _serviceUrl: string;
   @Input() set serviceUrl(value: string) {
     const changed = this._serviceUrl !== value;
     this._serviceUrl = value;
@@ -43,11 +65,20 @@ export class ServiceDetailComponent implements OnInit {
     return this._serviceUrl;
   }
 
+  /**
+   * Initialize HttpClient for requests
+   * @param http HttpClient
+   */
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
+  /**
+   * Handles change of Service Folder URL and Current Service.
+   *
+   * Queries the endpoint for updated data.
+   */
   onImageServiceChanged(): void {
     this.image = null;
 
@@ -66,11 +97,17 @@ export class ServiceDetailComponent implements OnInit {
       });
   }
 
+  /**
+   * Performs the ExportImage action on the Image server.
+   *
+   * Contains information on the image url and its bounding box.
+   * The `extent` property of the ImageServer is used for the `bbox` value
+   */
   viewImage(): void {
     const bbox = this.serviceDetail.extent;
     const bboxString = `${bbox.xmin},${bbox.ymin},${bbox.xmax},${bbox.ymax}`;
     const jsonServiceUrl = `${this.serviceUrl}/${this.service.name}/${this.service.type}`
-                              + `/exportImage?bbox=${bboxString}&format=jpgpng&f=json`;
+      + `/exportImage?bbox=${bboxString}&format=jpgpng&f=json`;
 
     console.log(jsonServiceUrl);
     this.http.get<IImage>(jsonServiceUrl).toPromise()
