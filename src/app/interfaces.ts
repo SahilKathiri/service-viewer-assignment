@@ -23,6 +23,7 @@ export interface IService {
 export interface IImageService {
     name: string;
     extent: IExtent;
+    description: string;
     initialExtent: IExtent;
     fullExtent: IExtent;
 }

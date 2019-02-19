@@ -5,14 +5,21 @@
     <button mat-flat-button color="primary" (click)="viewImage()">View Image</button>
   </div>
   <mat-divider></mat-divider>
-  <app-bounding-box [extent]="serviceDetail.extent" name="Extent" class="extentCard"></app-bounding-box>
-  <app-bounding-box [extent]="serviceDetail.initialExtent" name="Initial Extent" class="extentCard"></app-bounding-box>
-  <app-bounding-box [extent]="serviceDetail.fullExtent" name="Full Extent" class="extentCard"></app-bounding-box>
+  <div class="description">
+    <h2>Description</h2>
+    <p [innerHTML]="serviceDetail.description"></p>
+  </div>
+
+  <div class="extents">
+    <h2>Extents</h2>
+    <app-bounding-box [extent]="serviceDetail.extent" name="Extent" class="extentCard"></app-bounding-box>
+    <app-bounding-box [extent]="serviceDetail.initialExtent" name="Initial Extent" class="extentCard"></app-bounding-box>
+    <app-bounding-box [extent]="serviceDetail.fullExtent" name="Full Extent" class="extentCard"></app-bounding-box>
+  </div>
 
   <ng-container *ngIf="image != null">
     <div class="imageContainer">
       <h2>Image</h2>
-      <mat-divider></mat-divider>
       <app-image-viewer [image]="image"></app-image-viewer>
     </div>
   </ng-container>
